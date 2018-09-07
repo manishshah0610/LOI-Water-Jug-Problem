@@ -1,7 +1,7 @@
 m = input("Enter the capacity of smaller jug:                                  ")     #Taking inputs
 n = input("Enter the capacity of larger jug:                                   ")
 c = input("Enter the required capacity:                                        ")
-m = int(m)
+m = int(m)                                                                            #Converting strings to integers
 n = int(n)
 c = int(c)
 
@@ -19,15 +19,56 @@ a = gcd(m,n)
 
 if(c%a != 0):                                                                         #Checking existence of solution
 	print("Solution does not exist")
+	exit(0)
 
+def solution(fromcap, tocap, d):                                                      #Function to find optimal solution
+	f = fromcap
+	t = 0
+	step = 0
+	step += 1
+	while (f != d and t != d):
+		temp = min(f, tocap - t)
+		t += temp
+		f -= temp
+		step += 1
+
+		if(f == d or t == d):
+			break
+
+		if (f == 0):
+			f = fromcap
+
+		if (t == tocap):
+			t = 0
+
+		step += 1
+	return step
+
+def printSolution(fromcap, tocap, d):                                                  #Function to print optimal solution
+	f = fromcap
+	t = 0
+	print(f,t)
+	while (f != d and t != d):
+		temp = min(f, tocap - t)
+		t += temp
+		f -= temp
+		print(f, t)
+
+		if(f == d or t == d):
+			break
+
+		if (f == 0):
+			f = fromcap
+
+		if (t == tocap):
+			t = 0
+
+		print(f, t)
+
+m1 = solution(m,n,c)
+m2 = solution(n,m,c)
+
+if(m1<m2):
+	printSolution(m,n,c)
 else:
-	x = 0                                                                         #x denotes current amount in m
-	y = 0                                                                         #y denotes current amount in n
-
-	while(x != c and y!=c):
-		if(x==0):
-			x = x + n
-		else:
-			x = (x - (m-y))
-		y = (y + (n-x))
-		print (x,y)
+	printSolution(n,m,c)
