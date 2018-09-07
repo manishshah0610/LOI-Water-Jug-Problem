@@ -31,3 +31,6 @@ else:
 			x = (x - (m-y))
 		y = (y + (n-x))
 		print (x,y)
+
+		
+		
