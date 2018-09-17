@@ -72,3 +72,42 @@ if(m1<m2):
 	printSolution(small_jug,large_jug,amount_required)
 else:
 	printSolution(large_jug,small_jug,amount_required)
+
+	
+#GUI CODE
+
+from tkinter import *
+
+root=Tk()
+root.title("New Application")
+
+root.geometry("640x640+0+0")
+
+heading = Label(root, text="Welcome to the Water Jug Problem",font=("Aerial",40,"bold"),fg="steelblue").pack()
+
+label=Label(root,text="Enter the value of larger jug: ", font=("aerial",20,"bold"), fg="green").place(x=10,y=200)
+label=Label(root,text="Enter the value of smaller jug: ", font=("aerial",20,"bold"), fg="green").place(x=10,y=250)
+label=Label(root,text="Enter the amount to be filled: ", font=("aerial",20,"bold"), fg="green").place(x=10,y=300)
+label=Label(root,text="Choose the jug in which you want the water to be filled: ", font=("aerial",20,"bold"), fg="green").place(x=10,y=400)
+
+
+name1=StringVar()
+name2=StringVar()
+name3=StringVar()
+
+entry_box=Entry(root, text=name1, width=25, bg="lightgreen").place(x=420, y=210)
+entry_box=Entry(root, text=name2, width=25, bg="lightgreen").place(x=420, y=260)
+entry_box=Entry(root, text=name3, width=25, bg="lightgreen").place(x=420, y=310)
+
+
+Radio_1=Radiobutton(root, text="Larger Jug   ", width= 40, value=1, font=("aerial",15,"bold"), fg="grey").place(x=10,y=440)
+Radio_2=Radiobutton(root, text=" Smaller Jug", width= 40, value=2, font=("aerial",15,"bold"), fg="grey").place(x=10,y=500)
+
+def do_it():
+    print("value of the larger jug is :"+ str(name1.get()))
+    print("value of the smaller jug is :"+ str(name2.get()))
+    print("Value required is :"+ str(name3.get()))
+
+
+work=Button(root, text="Enter", width=15, height=2, bg="lightblue", command=do_it).place(x=250,y=600)
+root.mainloop()
